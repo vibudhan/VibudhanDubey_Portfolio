@@ -29,42 +29,9 @@
     .nav-link:hover::after {
         @apply scale-x-100;
     }
-    .form-input {
-        @apply w-full bg-[#1E1B18] dark:bg-gray-200 border border-gray-700 dark:border-gray-300 text-text-dark dark:text-text-light p-3 rounded-md transition-all duration-300 focus:outline-none focus:border-accent-gold focus:ring-2 focus:ring-accent-gold/50;
-    }
     .skill-badge {
         @apply bg-primary-red/20 dark:bg-primary-red/10 text-accent-gold dark:text-primary-red py-2 px-4 rounded-full font-medium border border-dark-red dark:border-primary-red/20 transition-all duration-300 hover:bg-primary-red/40 hover:scale-105;
     }
-    .project-card {
-        @apply bg-[#1E1B18] dark:bg-white rounded-lg overflow-hidden border border-gray-800 dark:border-gray-200 transition-all duration-300 transform hover:-translate-y-2 hover:rotate-1 shadow-lg hover:shadow-gold-glow;
-    }
-    .project-btn {
-        @apply inline-block py-2 px-4 rounded-md text-center font-bold uppercase tracking-wider border transition-all duration-300 transform hover:scale-105;
-    }
-}
-
-@layer utilities {
-    .reveal {
-        @apply opacity-0 transition-all duration-700 ease-out;
-    }
-    .reveal.is-visible {
-        @apply opacity-100 translate-y-0;
-    }
-    .reveal-up {
-        @apply translate-y-10;
-    }
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-/* ... (keep your existing @layer base styles) ... */
-
-@layer components {
-    /* ... (keep your existing nav-link, form-input, skill-badge styles) ... */
-
-    /* START: New Project Card Styles */
     .project-card {
         @apply bg-gradient-to-br from-[#1E1B18] to-base-dark dark:from-white dark:to-gray-100 rounded-lg border border-gray-800 dark:border-gray-200 transition-all duration-300 transform-gpu shadow-lg;
         transform-style: preserve-3d;
@@ -95,7 +62,49 @@
     .demo-btn {
         @apply border-accent-gold/50 text-accent-gold hover:bg-accent-gold hover:text-base-dark;
     }
-    /* END: New Project Card Styles */
+
+    /* START: Updated Footer Icon Styles with Tooltip */
+    .footer-icon {
+        @apply relative inline-block p-3 bg-gray-800/50 dark:bg-gray-300/80 rounded-full text-gray-400 dark:text-gray-600 transition-all duration-300 ease-in-out;
+    }
+    .footer-icon:hover {
+        @apply -translate-y-2 scale-110 bg-accent-gold text-white shadow-lg shadow-accent-gold/40;
+    }
+
+    /* Tooltip Bubble */
+    .footer-icon::before {
+        content: attr(aria-label); /* Pulls text from the aria-label attribute */
+        @apply absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap;
+        @apply bg-accent-gold text-white text-sm font-bold px-3 py-1 rounded-md;
+        @apply opacity-0 invisible transition-all duration-300 ease-in-out;
+        @apply transform translate-y-1;
+    }
+    
+    /* Tooltip Arrow */
+    .footer-icon::after {
+        content: '';
+        @apply absolute -top-4 left-1/2 -translate-x-1/2;
+        @apply border-8 border-transparent border-t-accent-gold;
+        @apply opacity-0 invisible transition-all duration-300 ease-in-out;
+        @apply transform translate-y-1;
+    }
+    
+    /* Show Tooltip on Hover */
+    .footer-icon:hover::before,
+    .footer-icon:hover::after {
+        @apply opacity-100 visible translate-y-0;
+    }
+    /* END: Updated Footer Icon Styles */
 }
 
-/* ... (keep your existing @layer utilities styles) ... */
+@layer utilities {
+    .reveal {
+        @apply opacity-0 transition-all duration-700 ease-out;
+    }
+    .reveal.is-visible {
+        @apply opacity-100 translate-y-0;
+    }
+    .reveal-up {
+        @apply translate-y-10;
+    }
+}
