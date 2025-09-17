@@ -62,25 +62,19 @@
     .demo-btn {
         @apply border-accent-gold/50 text-accent-gold hover:bg-accent-gold hover:text-base-dark;
     }
-
-    /* START: Updated Footer Icon Styles with Tooltip */
     .footer-icon {
-        @apply relative inline-block p-3 bg-gray-800/50 dark:bg-gray-300/80 rounded-full text-gray-400 dark:text-gray-600 transition-all duration-300 ease-in-out;
+        @apply relative inline-flex items-center justify-center p-3 bg-gray-800/50 dark:bg-gray-300/80 rounded-full text-gray-400 dark:text-gray-600 transition-all duration-300 ease-in-out;
     }
     .footer-icon:hover {
         @apply -translate-y-2 scale-110 bg-accent-gold text-white shadow-lg shadow-accent-gold/40;
     }
-
-    /* Tooltip Bubble */
     .footer-icon::before {
-        content: attr(aria-label); /* Pulls text from the aria-label attribute */
+        content: attr(aria-label);
         @apply absolute -top-12 left-1/2 -translate-x-1/2 whitespace-nowrap;
         @apply bg-accent-gold text-white text-sm font-bold px-3 py-1 rounded-md;
         @apply opacity-0 invisible transition-all duration-300 ease-in-out;
         @apply transform translate-y-1;
     }
-    
-    /* Tooltip Arrow */
     .footer-icon::after {
         content: '';
         @apply absolute -top-4 left-1/2 -translate-x-1/2;
@@ -88,13 +82,20 @@
         @apply opacity-0 invisible transition-all duration-300 ease-in-out;
         @apply transform translate-y-1;
     }
-    
-    /* Show Tooltip on Hover */
     .footer-icon:hover::before,
     .footer-icon:hover::after {
         @apply opacity-100 visible translate-y-0;
     }
-    /* END: Updated Footer Icon Styles */
+    
+    
+    .resume-iframe::-webkit-scrollbar {
+        display: none; 
+    }
+    .resume-iframe {
+        -ms-overflow-style: none;  
+        scrollbar-width: none;  
+    }
+    
 }
 
 @layer utilities {
